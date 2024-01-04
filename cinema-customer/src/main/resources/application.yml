@@ -1,0 +1,301 @@
+# Project related configuration
+cinema:
+  # name
+  name: Cinema-Customer
+  # Version
+  version: ${revision}
+  # copyright year
+  copyrightYear: 2023
+  # Example demo switch
+  demoEnabled: true
+  # get ip address switch
+  addressEnabled: true
+
+captcha:
+  enable: false
+  # The page <parameter setting> can be turned on and off Verification code verification
+  # Verification code type math array calculation char character verification
+  type: MATH
+  # line line segment interference circle circle interference shear distortion interference
+  category: CIRCLE
+  # Digits of digital verification code
+  numberLength: 1
+  # character verification code length
+  charLength: 4
+
+# Development environment configuration
+server:
+  # The HTTP port of the server, the default is 8080
+  port: 8082
+  servlet:
+    # Application access path
+    context-path: /customer
+  # undertow configuration
+  undertow:
+    # Maximum size of HTTP post content. When the value is -1, the default is that the size is unlimited
+    max-http-post-size: -1
+    # The following configurations will affect the buffer, which will be used for IO operations connected to the server, which is somewhat similar to netty's pooled memory management
+    # The space size of each buffer, the smaller the space is, the more fully it is used
+    buffer-size: 512
+    # Whether to allocate direct memory
+    direct-buffers: true
+    threads:
+      # Set the number of IO threads, it mainly performs non-blocking tasks, they will be responsible for multiple connections, the default setting is one thread per CPU core
+      io: 8
+      # Blocking task thread pool, when performing similar servlet request blocking operations, undertow will get threads from this thread pool, its value setting depends on the load of the system
+      worker: 256
+
+# log configuration
+logging:
+  level:
+    vn.udn.dut.cinema: @logging.level@
+    org.springframework: warn
+
+# user configuration
+user:
+  password:
+    # Maximum number of incorrect passwords
+    maxRetryCount: 5
+    # Password lock time (default 10 minutes)
+    lockTime: 10
+
+# Spring configuration
+spring:
+  application:
+    name: ${cinema.name}
+  # resource information
+  messages:
+    # Internationalization resource file path
+    basename: i18n/messages
+  profiles:
+    active: @profiles.active@
+  # File Upload
+  servlet:
+    multipart:
+      # single file size
+      max-file-size: 10MB
+      # Set the total uploaded file size
+      max-request-size: 20MB
+  mvc:
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
+  jackson:
+    # date formatting
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      # formatted output
+      indent_output: false
+      # Objects that cannot be converted are ignored
+      fail_on_empty_beans: false
+    deserialization:
+      # Allows objects to ignore properties that don't exist in json
+      fail_on_unknown_properties: false
+
+# Sa-Token configuration
+sa-token:
+  # token name (also cookie name)
+  token-name: Authorization
+  # The validity period of the token is set to one day (must expire) unit: seconds
+  timeout: 86400
+  # The temporary validity period of the token (it will expire if there is no operation at the specified time) unit: second
+  activity-timeout: 1800
+  # Whether to allow the same account to log in concurrently (when true, allow login together, when false, new login squeezes out old login)
+  is-concurrent: true
+  # When multiple people log in to the same account, whether to share a token (if true, all logins share a token, and if false, create a new token for each login)
+  is-share: false
+  # Whether to try to read the token from the header
+  is-read-header: true
+  # Whether to try to read the token from the cookie
+  is-read-cookie: false
+  # token prefix
+  token-prefix: "Customer-Bearer"
+  # jwt key
+  jwt-secret-key: mweoirumzncoiuwqasdfjwiuehfpqxc
+
+# security configuration
+security:
+  # exclude path
+  excludes:
+    # static resources
+    - /*.html
+    - /**/*.html
+    - /**/*.css
+    - /**/*.js
+    # public path
+    - /favicon.ico
+    - /error
+    # swagger document configuration
+    - /*/api-docs
+    - /*/api-docs/**
+    # actuator monitoring configuration
+    - /actuator
+    - /actuator/**
+    - /homepage/**
+    - /logService/pickupFull/test
+    # Receive progress from robot
+    - /robot/progress
+
+# Multi-tenant configuration
+tenant:
+  # whether to open
+  enable: false
+  # exclusion list
+  excludes:
+    - sys_menu
+    - sys_tenant
+    - sys_tenant_package
+    - sys_role_dept
+    - sys_role_menu
+    - sys_user_post
+    - sys_user_role
+
+# MyBatisPlus configuration
+# https://baomidou.com/config/
+mybatis-plus:
+  # Multi-package is not supported, if necessary, you can configure in the annotation or upgrade the scan level
+  # For example com.**.**.mapper
+  mapperPackage: vn.udn.dut.cinema.**.mapper
+  # Corresponding XML file location
+  mapperLocations: classpath*:mapper/**/*Mapper.xml
+  # Entity scanning, multiple packages are separated by commas or semicolons
+  typeAliasesPackage: vn.udn.dut.cinema.**.domain
+  # Whether to check the existence of the MyBatis XML file at startup, the default is not checked
+  checkConfigLocation: false
+  configuration:
+    # Automatic camel case mapping
+    mapUnderscoreToCamelCase: true
+    # MyBatis automatic mapping strategy
+    # NONE: Do not enable PARTIAL: Only auto-map non-nested resultMaps FULL: Auto-map all resultMaps
+    autoMappingBehavior: FULL
+    # Unknown column or unknown attribute processing strategy when MyBatis automatically maps
+    # NONE: Do not process WARNING: Print related warnings FAILING: Throw an exception and detailed information
+    autoMappingUnknownColumnBehavior: NONE
+    # More detailed log output will have performance loss org.apache.ibatis.logging.stdout.StdOutImpl
+    # Turn off logging (you can simply use p6spy to analyze) org.apache.ibatis.logging.nologging.NoLoggingImpl
+    # Default log output org.apache.ibatis.logging.slf4j.Slf4jImpl
+    logImpl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+  global-config:
+    # Whether to print Logo banner
+    banner: true
+    dbConfig:
+      # primary key type
+      # AUTO Increment NONE Empty INPUT User input ASSIGN_ID Snowflake ASSIGN_UUID Unique UUID
+      idType: ASSIGN_ID
+      # logical removed value
+      logicDeleteValue: 2
+      # Logical not deleted value
+      logicNotDeleteValue: 0
+      # The insert of the field verification strategy, the field verification strategy at the time of insert
+      # IGNORED ignore NOT_NULL not NULL NOT_EMPTY not empty DEFAULT default NEVER do not join SQL
+      insertStrategy: NOT_NULL
+      # The update of the field verification strategy, the field verification strategy at the time of update
+      updateStrategy: NOT_NULL
+      # The select field verification strategy, the field verification strategy at the time of select is both the where condition generated by the wrapper based on the internal entity
+      where-strategy: NOT_NULL
+
+# data encryption
+mybatis-encryptor:
+  # Whether to enable encryption
+  enable: false
+  # default encryption algorithm
+  algorithm: BASE64
+  # The encoding method is BASE64/HEX. defaultBASE64
+  encode: BASE64
+  # Security key Symmetric algorithm key such as: AES, SM4
+  password:
+  # Public and private keys Public and private keys of asymmetric algorithms such as: SM2, RSA
+  publicKey:
+  privateKey:
+
+# Swagger configuration
+swagger:
+  info:
+    # title
+    title: 'Title: ${cinema.name} system interface document'
+    # describe
+    description: 'Description: It is used to manage the personnel information of the companies under the group, specifically including XXX, XXX modules...'
+    # Version
+    version: 'Version number: ${cinema.version}'
+    # author information
+    contact:
+      name: HoaLD
+      email: hoald@gmail.com.vn
+      url: https://gitlab.com/cinema
+  components:
+    # Authentication mode configuration
+    security-schemes:
+      apiKey:
+        type: APIKEY
+        in: HEADER
+        name: ${sa-token.token-name}
+
+springdoc:
+  api-docs:
+    # Whether to open the interface document
+    enabled: true
+  swagger-ui:
+    # Persist authentication data
+    persistAuthorization: true
+  # Two groups are defined here, more than one can be defined, or none can be defined
+  group-configs:
+    - group: 1. Demonstration module
+      packages-to-scan: vn.udn.dut.cinema.demo
+    - group: 2. General module
+      packages-to-scan: vn.udn.dut.cinema.web
+    - group: 3. System module
+      packages-to-scan: vn.udn.dut.cinema.system
+    - group: 4. Code generation module
+      packages-to-scan: vn.udn.dut.cinema.generator
+
+# Prevent XSS attacks
+xss:
+  # filter switch
+  enabled: true
+  # Exclude links (multiple comma-separated)
+  excludes: /system/notice
+  # match link
+  urlPatterns: /system/*,/monitor/*,/tool/*,/customer/*
+
+# Global thread pool related configuration
+thread-pool:
+  # Whether to enable thread pool
+  enabled: false
+  # queue max length
+  queueCapacity: 128
+  # The idle time allowed by the thread pool maintenance thread
+  keepAliveSeconds: 300
+
+--- # Distributed lock lock4j global configuration
+lock4j:
+  # Get distributed lock timeout, the default is 3000 milliseconds
+  acquire-timeout: 3000
+  # Distributed lock timeout, the default is 30 seconds
+  expire: 30000
+
+--- # Configuration items for Actuator monitoring endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+    logfile:
+      external-file: ./logs/sys-console.log
+
+--- # websocket
+websocket:
+  enabled: true
+  # path
+  path: /websocket
+  # Set access source address
+  allowedOrigins: '*'
+  
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic

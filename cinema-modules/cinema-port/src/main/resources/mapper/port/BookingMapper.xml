@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vn.udn.dut.cinema.port.mapper.BookingMapper">
+	<resultMap type="vn.udn.dut.cinema.port.domain.vo.BookingVo" id="BookingResult">
+        <id property="id" column="id"/>
+    </resultMap>
+    
+    <sql id="selectBookingVo">
+    	select distinct	b.id,
+			  b.tenant_id,
+			  b.cinema_id,
+			  ci.cinema_name,
+			  b.customer_id,
+			  c.nick_name,
+			  b.num_ticket,
+			  b.promotion_id,
+			  b.total_price,
+			  b.payment_flag,
+			  b.showtime_id,
+			  m.title as movie_name,
+			  b.create_time
+		from booking b left join customer c on b.customer_id = c.user_id
+						left join showtime s on b.showtime_id = s.id
+						left join movie m on s.movie_id = m.id
+						left join cinema ci on b.cinema_id = ci.id
+						
+    </sql>
+    
+    
+    <select id="selectPageBookingList" resultMap="BookingResult">
+    	select * from (
+    		<include refid="selectBookingVo"/>
+    		${ew.getCustomSqlSegment}
+    	) a
+    </select>
+    
+    <select id="selectBookingList" resultMap="BookingResult">
+    	select * from (
+    		<include refid="selectBookingVo"/>
+    		${ew.getCustomSqlSegment}
+    	) a
+    </select>
+</mapper>

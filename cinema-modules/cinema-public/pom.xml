@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>vn.udn.dut.cinema</groupId>
+        <artifactId>cinema-modules</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>cinema-public</artifactId>
+
+    <description>
+        Public module
+    </description>
+
+    <dependencies>
+        <!-- general tool -->
+        <dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-common-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-common-doc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-common-mybatis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-common-translation</artifactId>
+        </dependency>
+
+        <!-- OSS function module -->
+        <dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-common-oss</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-common-log</artifactId>
+        </dependency>
+
+        <!-- excel-->
+        <dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-common-excel</artifactId>
+        </dependency>
+
+        <!-- SMS function module -->
+        <dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-common-sms</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-common-tenant</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-common-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-common-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-common-idempotent</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-common-sensitive</artifactId>
+        </dependency>
+        
+        <dependency>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		
+		<dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-system</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-port</artifactId>
+        </dependency>
+		
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		</dependency>
+		
+		<dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-fonts -->
+		<dependency>
+		    <groupId>net.sf.jasperreports</groupId>
+		    <artifactId>jasperreports-fonts</artifactId>
+		</dependency>
+    </dependencies>
+    
+</project>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vn.udn.dut.cinema.port.mapper.CustomerMapper">
+
+	<resultMap id="CustomerResult" type="vn.udn.dut.cinema.port.domain.vo.CustomerVo">
+    </resultMap>
+
+	<sql id="selectCustomerVo">
+        select c.user_id,
+               c.user_name,
+               c.nick_name,
+               c.email,
+               c.avatar,
+               c.phonenumber,
+               c.password,
+               c.sex,
+               c.status,
+               c.create_by,
+               c.create_time,
+               c.remark
+        from customer c
+    </sql>
+
+    <select id="selectUserCustomerByUserName" parameterType="String" resultMap="CustomerResult">
+        <include refid="selectCustomerVo"/>
+        where c.status = '0' and c.user_name = #{userName}
+    </select>
+
+    <select id="selectUserById" parameterType="Long" resultMap="CustomerResult">
+        <include refid="selectCustomerVo"/>
+        where c.status = '0' and c.user_id = #{userId}
+    </select>
+</mapper>

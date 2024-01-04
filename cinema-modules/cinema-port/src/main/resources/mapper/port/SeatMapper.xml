@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vn.udn.dut.cinema.port.mapper.SeatMapper">
+	<resultMap type="vn.udn.dut.cinema.port.domain.vo.SeatVo" id="SeatResult">
+        <id property="id" column="id"/>
+    </resultMap>
+    
+    <sql id="selectSeatVo">
+    	select distinct	s.id,
+			  s.tenant_id,
+			  s.hall_id,
+			  s.showtime_id,
+			  s.seat_type_id,
+			  s.row_code,
+			  s.column_code,
+			  s.status,
+			  st.seat_type_name,
+			  st.price
+		from seat s 
+			left join showtime sh on s.showtime_id = sh.id
+			left join hall h on s.hall_id = h.id
+			left join seat_type st on s.seat_type_id = st.id
+    </sql>
+    
+    
+    <select id="selectPageSeatList" resultMap="SeatResult">
+    	select * from (
+    		<include refid="selectSeatVo"/>
+    		${ew.getCustomSqlSegment}
+    	) a
+    </select>
+    
+    <select id="selectSeatList" resultMap="SeatResult">
+    	select * from (
+    		<include refid="selectSeatVo"/>
+    		${ew.getCustomSqlSegment}
+    	) a
+    </select>
+</mapper>

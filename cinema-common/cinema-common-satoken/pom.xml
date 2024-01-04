@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>vn.udn.dut.cinema</groupId>
+        <artifactId>cinema-common</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>cinema-common-satoken</artifactId>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-common-core</artifactId>
+        </dependency>
+
+        <!-- Cinema Common Redis-->
+        <dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-common-redis</artifactId>
+        </dependency>
+
+        <!-- Sa-Token Authorization Authentication, Online Documentation: http://sa-token.dev33.cn/ -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-spring-boot3-starter</artifactId>
+        </dependency>
+
+        <!-- Sa-Token integration jwt -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-jwt</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>

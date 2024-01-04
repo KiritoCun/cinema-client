@@ -1,0 +1,5 @@
+vn.udn.dut.cinema.common.translation.config.TranslationConfig
+vn.udn.dut.cinema.common.translation.core.impl.DeptNameTranslationImpl
+vn.udn.dut.cinema.common.translation.core.impl.DictTypeTranslationImpl
+vn.udn.dut.cinema.common.translation.core.impl.OssUrlTranslationImpl
+vn.udn.dut.cinema.common.translation.core.impl.UserNameTranslationImpl

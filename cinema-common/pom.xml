@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>cinema</artifactId>
+        <groupId>vn.udn.dut.cinema</groupId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <modules>
+        <module>cinema-common-bom</module>
+        <module>cinema-common-core</module>
+        <module>cinema-common-doc</module>
+        <module>cinema-common-excel</module>
+        <module>cinema-common-idempotent</module>
+        <module>cinema-common-job</module>
+        <module>cinema-common-log</module>
+        <module>cinema-common-mail</module>
+        <module>cinema-common-mybatis</module>
+        <module>cinema-common-oss</module>
+        <module>cinema-common-ratelimiter</module>
+        <module>cinema-common-redis</module>
+        <module>cinema-common-satoken</module>
+        <module>cinema-common-security</module>
+        <module>cinema-common-sms</module>
+        <module>cinema-common-web</module>
+        <module>cinema-common-translation</module>
+        <module>cinema-common-sensitive</module>
+        <module>cinema-common-json</module>
+        <module>cinema-common-encrypt</module>
+        <module>cinema-common-tenant</module>
+        <module>cinema-common-websocket</module>
+    </modules>
+
+    <artifactId>cinema-common</artifactId>
+    <packaging>pom</packaging>
+
+    <description>
+        common module
+    </description>
+
+</project>

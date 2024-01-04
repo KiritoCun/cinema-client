@@ -1,0 +1,156 @@
+--- # Monitoring Center Configuration
+spring.boot.admin.client:
+  # Add client switch
+  enabled: false
+  url: http://localhost:9090/monitor-admin
+  instance:
+    service-host-type: IP
+  username: admin
+  password: admin123
+
+--- # xxl-job configuration
+xxl.job:
+  # actuator switch
+  enabled: false
+  # Dispatch center address: If there are multiple addresses in the dispatch center cluster deployment, separate them with commas.
+  admin-addresses: http://localhost:9100/job-admin
+  # Actuator communication token: enable when not empty
+  access-token: xxl-job
+  executor:
+    # Actuator AppName: Actuator heartbeat registration group basis; if it is empty, automatic registration is turned off
+    appname: customer-job-executor
+    # Executor port number Executor writes from 9101 onwards
+    port: 9101
+    # Actuator Registration: Default IP:PORT
+    address:
+    # Executor IP: Obtain IP automatically by default
+    ip:
+    # Executor running log file storage disk path
+    logpath: ./logs/xxl-job
+    # Executor log file storage days: greater than 3 to take effect
+    logretentiondays: 30
+
+--- # Data source configuration
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    # Dynamic data source document
+    dynamic:
+      # Performance analysis plug-in (with performance loss, not recommended for production environment)
+      p6spy: true
+      # Set the default data source or data source group, the default value is master
+      primary: master
+      # Strict mode If the data source cannot be matched, an error will be reported
+      strict: true
+      datasource:
+        # Master database data source
+        master:
+          type: ${spring.datasource.type}
+          #driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+          # jdbc all parameter configuration reference
+          # rewriteBatchedStatements=true Batch processing optimization greatly improves the performance of batch insert, update, and delete (there is a performance loss to the database, and performance issues should be considered when using batch operations)
+          #url: jdbc:sqlserver://localhost:1433;databaseName=CINEMA;SelectMethod=cursor;encrypt=false;rewriteBatchedStatements=true
+          #username: sa
+          #password: 123456
+          driverClassName: org.postgresql.Driver
+          url: jdbc:postgresql://dpg-cmakl17109ks73ffp0eg-a.singapore-postgres.render.com:5432/cinema_psya
+          username: cinema_psya_user
+          password: YZCsQuwcLzL4dDvYhfnKqzIA1YlN8fmS
+        # From the database data source
+        slave:
+          lazy: true
+          type: ${spring.datasource.type}
+          #driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+          #url: jdbc:sqlserver://localhost:1433;databaseName=CINEMA;SelectMethod=cursor;encrypt=false;rewriteBatchedStatements=true
+          #username: sa
+          #password: 123456
+          driverClassName: org.postgresql.Driver
+          url: jdbc:postgresql://dpg-cmakl17109ks73ffp0eg-a.singapore-postgres.render.com:5432/cinema_psya
+          username: cinema_psya_user
+          password: YZCsQuwcLzL4dDvYhfnKqzIA1YlN8fmS
+      hikari:
+        # Maximum number of connection pools
+        maxPoolSize: 20
+        # Minimum number of idle threads
+        minIdle: 10
+        # Configure the time to wait for the connection to be timed out
+        connectionTimeout: 30000
+        # Check timeout
+        validationTimeout: 5000
+        # The maximum time for an idle connection to survive, the default is 10 minutes
+        idleTimeout: 600000
+        # This property controls the longest lifetime of a connection in the pool, a value of 0 means an infinite lifetime, and the default is 30 minutes
+        maxLifetime: 1800000
+        # Connection test query (configure to detect whether the connection is valid)
+        connectionTestQuery: SELECT 1
+        # How often to check connection liveness
+        keepaliveTime: 30000
+
+--- # Redis stand-alone configuration (stand-alone and cluster can only open one and the other needs to be commented out)
+spring.data:
+  redis:
+    # address
+    host: redis-19803.c1.asia-northeast1-1.gce.cloud.redislabs.com
+    # Port, the default is 6379
+    port: 19803
+    # Password (please comment out if there is no password)
+    password: Wcc0qAm7f9vKRuK80JiwlyduOAf6TZlU
+
+redisson:
+  # redis key prefix
+  keyPrefix:
+  # Number of thread pools
+  threads: 4
+  # Number of Netty thread pools
+  nettyThreads: 8
+  # single node configuration
+  singleServerConfig:
+    # client name
+    clientName: ${cinema.name}
+    # Minimum number of idle connections
+    connectionMinimumIdleSize: 8
+    # connection pool size
+    connectionPoolSize: 32
+    # Connection idle timeout, unit: milliseconds
+    idleConnectionTimeout: 10000
+    # Command waiting timeout, unit: milliseconds
+    timeout: 3000
+    # Publish and subscribe connection pool size
+    subscriptionConnectionPoolSize: 50
+
+--- # email
+mail:
+  enabled: false
+  host: smtp.163.com
+  port: 465
+  # Do you need username and password authentication?
+  auth: true
+  # Sender, following the RFC-822 standard
+  from: xxx@163.com
+  # Username (note: if you use foxmail mailbox, here user is qq number)
+  user: xxx@163.com
+  # Password (note that some mailboxes need to set a separate password for the SMTP service, please refer to the relevant help for details)
+  pass: xxxxxxxxxx
+  # Secure connections using STARTTLS, an extension to the plain text communication protocol.
+  starttlsEnable: true
+  # Use SSL secure connection
+  sslEnable: true
+  # SMTP timeout, in milliseconds, the default value is no timeout
+  timeout: 0
+  # Socket connection timeout value, in milliseconds, the default value is no timeout
+  connectionTimeout: 0
+
+--- # sms text message
+sms:
+  enabled: false
+  # Aliyun dysmsapi.aliyuncs.com
+  # Tencent Cloud sms.tencentcloudapi.com
+  endpoint: "dysmsapi.aliyuncs.com"
+  accessKeyId: xxxxxxx
+  accessKeySecret: xxxxxx
+  signName: test
+  # For Tencent
+  sdkAppId:
+  
+# log configuration
+logging.config: classpath:logback-plus-dev.xml

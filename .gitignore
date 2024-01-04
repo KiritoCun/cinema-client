@@ -1,0 +1,126 @@
+######################################################################
+# Build Tools
+
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+######################################################################
+# IDE
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### JRebel ###
+rebel.xml
+
+### NetBeans ###
+nbproject/private/
+build/*
+nbbuild/
+nbdist/
+.nb-gradle/
+
+######################################################################
+# Others
+*.log
+*.xml.versionsBackup
+*.swp
+
+!*/build/*.java
+!*/build/*.html
+!*/build/*.xml
+
+.flattened-pom.xml
+
+# Ignore deployment/uat folder
+!deployment/uat/
+deployment/uat/*
+!deployment/uat/*.yml
+!deployment/uat/*.bat
+
+# Unignore dockerfile
+!deployment/uat/libs/
+deployment/uat/libs/*
+!deployment/uat/libs/Dockerfile*
+
+# Unignore nginx conf file
+!deployment/uat/nginx/
+deployment/uat/nginx/*
+!deployment/uat/nginx/conf
+
+# Unignore cicd file
+!deployment/uat/cicd/
+
+# Unignore gitlab-runner file
+!deployment/uat/gitlab-runner/
+
+# Unignore emqx file
+!deployment/uat/emqx/
+
+# Unignore sql file
+!deployment/uat/sql/
+
+# Unignore graylog file
+!deployment/uat/graylog/
+
+# Unignore redis
+!deployment/uat/redis/
+deployment/uat/redis/*
+!deployment/uat/redis/conf
+!deployment/uat/redis/data
+deployment/uat/redis/data/*
+!deployment/uat/redis/data/*.md
+
+# Ignore deployment/prod folder
+!deployment/prod/
+deployment/prod/*
+!deployment/prod/*.yml
+!deployment/prod/*.bat
+
+# Unignore dockerfile
+!deployment/prod/libs/
+deployment/prod/libs/*
+!deployment/prod/libs/Dockerfile*
+
+# Unignore nginx conf file
+!deployment/prod/nginx/
+deployment/prod/nginx/*
+!deployment/prod/nginx/conf
+
+# Unignore cicd file
+!deployment/prod/cicd/
+
+# Unignore gitlab-runner file
+!deployment/prod/gitlab-runner/
+
+# Unignore emqx file
+!deployment/prod/emqx/
+
+# Unignore sql file
+!deployment/prod/sql/
+
+# Unignore graylog file
+!deployment/prod/graylog/
+
+# Unignore redis
+!deployment/prod/redis/
+deployment/prod/redis/*
+!deployment/prod/redis/conf
+!deployment/prod/redis/data
+deployment/prod/redis/data/*
+!deployment/prod/redis/data/*.md

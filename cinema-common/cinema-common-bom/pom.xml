@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>vn.udn.dut.cinema</groupId>
+    <artifactId>cinema-common-bom</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
+
+    <description>
+        cinema-common-bom common dependencies
+    </description>
+
+    <properties>
+        <revision>5.1.0-SNAPSHOT</revision>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- core module -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-core</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- interface module -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-doc</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- excel -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-excel</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- idempotent -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-idempotent</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Scheduling module -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-job</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- logging -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-log</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- email service -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-mail</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- database service -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-mybatis</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- OSS -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-oss</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Limiting -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-ratelimiter</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- cache service -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-redis</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- satoken -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-satoken</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- security module -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-security</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- SMS module -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-sms</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- web service -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-web</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- translation module -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-translation</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Desensitization module -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-sensitive</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- serialization module -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-json</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Database encryption and decryption module -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-encrypt</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- tenant module -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-tenant</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- WebSocket module -->
+            <dependency>
+                <groupId>vn.udn.dut.cinema</groupId>
+                <artifactId>cinema-common-websocket</artifactId>
+                <version>${revision}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

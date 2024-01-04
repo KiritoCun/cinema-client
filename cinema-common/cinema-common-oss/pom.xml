@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>vn.udn.dut.cinema</groupId>
+        <artifactId>cinema-common</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>cinema-common-oss</artifactId>
+
+    <description>
+        cinema-common-oss oss service
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-common-json</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>vn.udn.dut.cinema</groupId>
+            <artifactId>cinema-common-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

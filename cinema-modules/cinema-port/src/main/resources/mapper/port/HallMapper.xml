@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vn.udn.dut.cinema.port.mapper.HallMapper">
+	<resultMap type="vn.udn.dut.cinema.port.domain.vo.HallVo" id="HallResult">
+        <id property="id" column="id"/>
+    </resultMap>
+    
+    <sql id="selectHallVo">
+    	select distinct	h.id,
+			  h.tenant_id,
+			  h.cinema_id,
+			  c.cinema_name,
+			  h.hall_name,
+			  h.capacity,
+			  h.row_number,
+			  h.create_dept,
+			  h.create_by,
+			  h.create_time,
+			  h.update_by,
+			  h.update_time,
+			  h.remark
+		from hall h left join cinema c on h.cinema_id = c.id
+    </sql>
+    
+    
+    <select id="selectPageHallList" resultMap="HallResult">
+    	select * from (
+    		<include refid="selectHallVo"/>
+    		${ew.getCustomSqlSegment}
+    	) a
+    </select>
+    
+    <select id="selectHallList" resultMap="HallResult">
+    	select * from (
+    		<include refid="selectHallVo"/>
+    		${ew.getCustomSqlSegment}
+    	) a
+    </select>
+</mapper>

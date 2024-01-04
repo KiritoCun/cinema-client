@@ -1,0 +1,3 @@
+vn.udn.dut.cinema.common.security.handler.GlobalExceptionHandler
+vn.udn.dut.cinema.common.security.handler.AllUrlHandler
+vn.udn.dut.cinema.common.security.config.SecurityConfig

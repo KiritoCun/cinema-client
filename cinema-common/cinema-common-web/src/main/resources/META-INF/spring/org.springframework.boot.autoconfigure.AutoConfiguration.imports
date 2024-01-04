@@ -1,0 +1,5 @@
+vn.udn.dut.cinema.common.web.config.CaptchaConfig
+vn.udn.dut.cinema.common.web.config.FilterConfig
+vn.udn.dut.cinema.common.web.config.I18nConfig
+vn.udn.dut.cinema.common.web.config.ResourcesConfig
+vn.udn.dut.cinema.common.web.config.UndertowConfig

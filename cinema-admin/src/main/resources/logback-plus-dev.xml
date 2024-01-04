@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="log.path" value="./logs"/>
+    <property name="console.log.pattern"
+              value="%red(%d{yyyy-MM-dd HH:mm:ss}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger{36}%n) - %msg%n"/>
+    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"/>
+
+    <!-- console output -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${console.log.pattern}</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- console output -->
+    <appender name="file_console" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/admin-console.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- log file name format -->
+            <fileNamePattern>${log.path}/admin-console.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- log maximum 1 day -->
+            <maxHistory>1</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <!-- filtering level -->
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+    <!-- syslog output -->
+    <appender name="file_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/admin-info.log</file>
+        <!-- Rotation Policy: Create log files based on time -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- log file name format -->
+            <fileNamePattern>${log.path}/admin-info.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- Log maximum history 60 days -->
+            <maxHistory>60</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- filtering level -->
+            <level>INFO</level>
+            <!-- Action on match: Receive (log) -->
+            <onMatch>ACCEPT</onMatch>
+            <!-- Action on Mismatch: Reject (do not log) -->
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="file_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/admin-error.log</file>
+        <!-- Rotation Policy: Create log files based on time -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- log file name format -->
+            <fileNamePattern>${log.path}/admin-error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- Log maximum history 60 days -->
+            <maxHistory>60</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- filtering level -->
+            <level>ERROR</level>
+            <!-- Action on match: Receive (log) -->
+            <onMatch>ACCEPT</onMatch>
+            <!-- Action on Mismatch: Reject (do not log) -->
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- info asynchronous output -->
+    <appender name="async_info" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- Do not lose logs. By default, if 80% of the queue is full, logs of TRACT, DEBUG, and INFO levels will be discarded -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- Change the default queue depth, which affects performance. The default value is 256 -->
+        <queueSize>512</queueSize>
+        <!-- Add additional appenders, at most one can be added -->
+        <appender-ref ref="file_info"/>
+    </appender>
+
+    <!-- error asynchronous output -->
+    <appender name="async_error" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- Do not lose logs. By default, if 80% of the queue is full, logs of TRACT, DEBUG, and INFO levels will be discarded -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- Change the default queue depth, which affects performance. The default value is 256 -->
+        <queueSize>512</queueSize>
+        <!-- Add additional appenders, at most one can be added -->
+        <appender-ref ref="file_error"/>
+    </appender>
+
+    <!-- Integrate skywalking console output tid -->
+<!--    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">-->
+<!--            <layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.TraceIdPatternLogbackLayout">-->
+<!--                <pattern>[%tid] ${console.log.pattern}</pattern>-->
+<!--            </layout>-->
+<!--            <charset>utf-8</charset>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+    <!-- Integrate skywalking to push and collect logs -->
+<!--    <appender name="sky_log" class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.log.GRPCLogClientAppender">-->
+<!--        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">-->
+<!--            <layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.TraceIdPatternLogbackLayout">-->
+<!--                <pattern>[%tid] ${console.log.pattern}</pattern>-->
+<!--            </layout>-->
+<!--            <charset>utf-8</charset>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+    <!-- system operation log -->
+    <root level="info">
+        <appender-ref ref="console" />
+        <appender-ref ref="async_info" />
+        <appender-ref ref="async_error" />
+        <appender-ref ref="file_console" />
+<!--        <appender-ref ref="sky_log"/>-->
+    </root>
+
+</configuration>
