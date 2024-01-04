@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vn.udn.dut.cinema.system.mapper.SysDataHistoryMapper">
+
+    <resultMap type="vn.udn.dut.cinema.system.domain.vo.SysDataHistoryVo" id="SysDataHistoryResult">
+        <id property="id" column="id"/>
+    </resultMap>
+
+	<sql id="selectDataHistoryVo">
+		select 	d.id,
+				d.tenant_id,
+			    d.ref_id,    
+			    d.new_value,   
+			    d.old_value,    
+			    d.data_field,   
+			    d.hist_type,    
+			    d.table_name,   
+			    d.system_type,   
+			    d.create_dept,  
+			    d.create_by,     
+			    d.create_time,  
+			    d.update_by,    
+			    d.update_time,
+			    u.nick_name  + ' (' + u.user_name + ')' as username
+		from sys_data_history d
+		left join sys_user u on d.create_by = u.user_id
+	</sql>
+	
+	<select id="selectPageDataHistoryList" resultMap="SysDataHistoryResult">
+    	select a.*
+    	from (
+    		<include refid="selectDataHistoryVo"/>
+	        ${ew.getCustomSqlSegment}
+    	) a
+    </select>
+    
+    <select id="selectDataHistoryList" resultMap="SysDataHistoryResult">
+    	select a.*
+    	from (
+    		<include refid="selectDataHistoryVo"/>
+	        ${ew.getCustomSqlSegment}
+    	) a
+    </select>
+    
+    <select id="selectDataHistoryById" parameterType="Long" resultMap="SysDataHistoryResult">
+        <include refid="selectDataHistoryVo"/>
+        where d.id = #{id}
+    </select>
+</mapper>

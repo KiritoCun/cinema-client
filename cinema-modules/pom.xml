@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>cinema</artifactId>
+        <groupId>vn.udn.dut.cinema</groupId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <modules>
+        <module>cinema-system</module>
+        <module>cinema-port</module>
+     	<module>cinema-public</module>
+    </modules>
+
+    <artifactId>cinema-modules</artifactId>
+    <packaging>pom</packaging>
+
+    <description>
+        cinema-modules business modules
+    </description>
+
+</project>

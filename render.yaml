@@ -1,0 +1,9 @@
+services:
+  # A Redis instance
+  - type: redis
+    name: redis-cache
+    region: frankfurt
+    ipAllowList: # required
+      - source: 0.0.0.0/0
+        description: everywhere
+    plan: free # optional (defaults to starter instance type)
